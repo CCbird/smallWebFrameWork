@@ -1,0 +1,2 @@
+urls = [('^/$','index'),
+        ('^/hello$','hello')]
