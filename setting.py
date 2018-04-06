@@ -2,7 +2,7 @@
 
 import MySQLdb
 
-class db(object):
+class _db(object):
 	def __init__(self):
 		self.host = 'localhost'
 		self.port = 3306
@@ -10,6 +10,7 @@ class db(object):
 		self.passwd = 'wuwangjie'
 		self.db_name = 'ddd'
 
+	
 	def create(self):
 		try:
 			db     = MySQLdb.connect(self.host, self.user, self.passwd)
@@ -25,4 +26,6 @@ class db(object):
 		# 关闭数据库连接
 			db.close()
 
+
+db = _db()
 

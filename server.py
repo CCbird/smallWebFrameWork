@@ -1,5 +1,5 @@
 
-
+# -*- coding: UTF-8 -*-
 import sys
 from wsgiref.simple_server import make_server,demo_app
 from app import application as app
@@ -16,6 +16,7 @@ if __name__ ==  "__main__":
 	httpd.serve_forever()
   elif 'createdatabase' in sys.argv:
   		from  setting import db
-		db().create()
+		db.create()
   else:
 	print "Less args!!!\n"
+
