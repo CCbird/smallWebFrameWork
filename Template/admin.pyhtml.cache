@@ -1,0 +1,54 @@
+timestamp: 1523090669.69
+
+_extend=_buf.extend;_to_str=to_str;_escape=escape; _extend(('''<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>''', _escape(_to_str(title)), '''</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+    <body>
+	<div class="appblog module">
+		
+	<table>
+	<caption><a>BLOG</a></caption>
+
+	<tbody>
+	  <tr>
+		<th><a>''', _escape(_to_str(title)), '''</a></th>
+		<td></td>
+		<td></td>
+	  </tr>
+	 
+	</tbody>
+
+	</table>
+	
+		 <div align="center">
+			<div>
+			<label>Title:</lable>
+			<input  maxlength="150" name="title" type="text">
+			</input>
+			</div>
+			
+			<HR style="FILTER: alpha(opacity=0,finishopacity=0,style=3)" width="70%" color=#987cb9 SIZE=3>
+			
+			<label>Body:</label>	
+			<div>
+			<textarea id="body_text" name="text_body" cols="110" rows="30"></textarea>
+			</div>
+		</div>
+
+		<div>
+		<button type="submit">Add</button>
+		</div>
+
+	</div>
+
+
+
+	
+    </body>\n''', ));

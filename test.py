@@ -1,19 +1,26 @@
-from functools import reduce
 
-__author__ = 'Administrator'
+'''
+测试用，无卵用！
 
-import time
 
-def performance(f):
-	def fn(*args,**kwargs):
-		t1=time.time()
-		r =f(*args,**kwargs)
-		t2 = time.time()
-		print "call %s() in %fs"%(f.__name__,(t2-t1))
-		return r
-	return fn
 
-@performance
-def factorial(n):
-	return reduce(lambda x,y:x*y,range(1,n+1))
-print factorial(10)
+from model import blog
+
+class blog_list():
+	post   =['Title','body','created','updated']
+	comment=['content','created']
+
+#blog_list = blog_list()
+
+
+
+def a(app,*args):
+	f=getattr(app,args[0][0])
+	print f
+	print args
+	print len(args[0])
+	  
+					
+a(blog,blog_list.post,blog_list.comment)
+'''
+

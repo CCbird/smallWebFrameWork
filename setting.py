@@ -8,7 +8,7 @@ class _db(object):
 		self.port = 3306
 		self.user = 'root'
 		self.passwd = 'wuwangjie'
-		self.db_name = 'ddd'
+		self.db_name = 'blog'
 
 	
 	def create(self):
@@ -16,10 +16,11 @@ class _db(object):
 			db     = MySQLdb.connect(self.host, self.user, self.passwd)
 			cursor = db.cursor()
 			cursor.execute('show databases')
-			cursor.execute('create database  if not exists '   + self.db_name)					
+			cursor.execute('CREATE DATABASE  '+ self.db_name +' DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci')					
 			db.commit()
 
 		except MySQLdb.Error, e:
+				db.rollback()
 				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
 
 		finally:

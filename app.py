@@ -2,6 +2,7 @@
 import re
 import views
 from url import urls
+import admin
 
 
 
@@ -16,13 +17,24 @@ class application:
 		path = self.environ['PATH_INFO']
 
 		for pattern in urls:
-			m = re.match(pattern[0],path)		
+			m = re.match(pattern[0],path)
+
 			if m:
+				if pattern[1] =='admin':
+					function = getattr(admin,pattern[1])
+					return self.admin(function)
+
 				function = getattr(views,pattern[1])
 				return self.view(function)				
 		return self.Get_404()	
 
 	def view(self,func):
+		status = '200 OK'
+		response_headers = [('Content-type','text/html')]
+		self.start(status,response_headers)
+		yield func()
+
+	def admin(self,func):
 		status = '200 OK'
 		response_headers = [('Content-type','text/html')]
 		self.start(status,response_headers)
