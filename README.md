@@ -2,7 +2,7 @@ A smallWebFrameWork
 
 dependencies:
 
- 	pyTenjin
+ 	mysql,pyTenjin
 
 
 
