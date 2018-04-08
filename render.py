@@ -9,5 +9,5 @@ from tenjin.html import *
 
 def render(html,context):
 	engine = tenjin.Engine()
-	renderF = engine.render(html, context) 
+	renderF = engine.render(html, context)
 	return renderF

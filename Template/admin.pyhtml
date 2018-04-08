@@ -7,45 +7,78 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <script type="text/javascript" src="../js/getTimeStamp.js"></script>
+
     </head>
     <body>
+
+    
+
+
+
 	<div class="appblog module">
 		
-	<table>
-	<caption><a>BLOG</a></caption>
+		<table>
+		<caption><a>BLOG</a></caption>
 
-	<tbody>
-	  <tr>
-		<th><a>${title}</a></th>
-		<td></td>
-		<td></td>
-	  </tr>
-	 
-	</tbody>
+		<tbody>
+		  <tr>
+			<th><a>${title}</a></th>           <!--循环取出数据库post表中Title-->
+		  </tr>
+		 
+		</tbody>
 
-	</table>
-	
-		 <div align="center">
-			<div>
-			<label>Title:</lable>
-			<input  maxlength="150" name="title" type="text">
-			</input>
-			</div>
-			
-			<HR style="FILTER: alpha(opacity=0,finishopacity=0,style=3)" width="70%" color=#987cb9 SIZE=3>
-			
-			<label>Body:</label>	
-			<div>
-			<textarea id="body_text" name="text_body" cols="110" rows="30"></textarea>
-			</div>
-		</div>
+		</table>
+		
+			<form method="post" id="blogpost_form">
+				<div align="center">
+					<div>
+						<label>标题：</lable>
+						<input  maxlength="150" id="Title" name="Title" type="text"></input>
+					</div>
+					
+					<HR style="FILTER: alpha(opacity=0,finishopacity=0,style=3)" width="70%" color=#987cb9 SIZE=3</HR>
+					
+					<label>内容：</label>
+					<div>
+						<textarea id="Body_text" name="Body_text" cols="120" rows="30"></textarea>
+					</div>
 
-		<div>
-		<button type="submit">Add</button>
-		</div>
+					<div>
+						<label>时间戳:</label>
+						<input id="Timestamp" name="Timestamp" size="20" type="text"> </input>
+						<a href="javascript:void(0)" onclick="getNowFormatDate()">当前时间戳</a>
+							<script type="text/javascript">
+								function getNowFormatDate() {
+								    var date = new Date();
+								    var seperator1 = "-";
+								    var seperator2 = ":";
+								    var month = date.getMonth() + 1;
+								    var strDate = date.getDate();
+								    if (month >= 1 && month <= 9) {
+								        month = "0" + month;
+								    }
+								    if (strDate >= 0 && strDate <= 9) {
+								        strDate = "0" + strDate;
+								    }
+								    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+								            + " " + date.getHours() + seperator2 + date.getMinutes()
+								            + seperator2 + date.getSeconds();
 
+								    document.getElementById("Timestamp").value=currentdate;
+								}
+
+						    </script>
+					</div>
+
+					<div align="center">
+						<input type="submit" value="提交"> </input>
+						<input type="submit" value="删除"> </input>
+					</div>
+				</div>
+
+			</form>
 	</div>
-
 
 
 	

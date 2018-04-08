@@ -24,8 +24,8 @@ class _addToDB(_db):
 
 
 		try:
-			for t in range(len(args)):									#不定参数个数
-				self.table_name = blog_list.table[t]					#获取表名
+			for t in range(len(args)):                                 #不定参数个数
+				self.table_name = blog_list.table[t]				   #获取表名
 				sql_table="""
 						  CREATE TABLE `""" + self.table_name + """` 
 						  (
