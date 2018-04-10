@@ -15,5 +15,5 @@ function getNowFormatDate() {
             + " " + date.getHours() + seperator2 + date.getMinutes()
             + seperator2 + date.getSeconds();
     
-    alert(currentdate);
+    document.getElementById('Timestamp').value=currentdate;
 }

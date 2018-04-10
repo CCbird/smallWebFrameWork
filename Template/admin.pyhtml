@@ -7,14 +7,10 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <script type="text/javascript" src="../js/getTimeStamp.js"></script>
+        <script type="text/javascript" src="../static/js/getTimeStamp.js"></script>
 
     </head>
     <body>
-
-    
-
-
 
 	<div class="appblog module">
 		
@@ -48,27 +44,7 @@
 						<label>时间戳:</label>
 						<input id="Timestamp" name="Timestamp" size="20" type="text"> </input>
 						<a href="javascript:void(0)" onclick="getNowFormatDate()">当前时间戳</a>
-							<script type="text/javascript">
-								function getNowFormatDate() {
-								    var date = new Date();
-								    var seperator1 = "-";
-								    var seperator2 = ":";
-								    var month = date.getMonth() + 1;
-								    var strDate = date.getDate();
-								    if (month >= 1 && month <= 9) {
-								        month = "0" + month;
-								    }
-								    if (strDate >= 0 && strDate <= 9) {
-								        strDate = "0" + strDate;
-								    }
-								    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
-								            + " " + date.getHours() + seperator2 + date.getMinutes()
-								            + seperator2 + date.getSeconds();
-
-								    document.getElementById("Timestamp").value=currentdate;
-								}
-
-						    </script>
+							
 					</div>
 
 					<div align="center">

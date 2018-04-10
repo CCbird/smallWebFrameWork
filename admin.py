@@ -11,13 +11,6 @@ class blog_list():
 
 
 
-
-
-
-
-
-
-
 def admin():
 	context = {'title':'第一篇博客'}
 	return render('Template/admin.pyhtml',context)
