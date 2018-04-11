@@ -1,9 +1,11 @@
-<!doctype html>
+timestamp: 1523458499.51
+
+_extend=_buf.extend;_to_str=to_str;_escape=escape; _extend(('''<!doctype html>
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>${title}</title>
+        <title>''', _escape(_to_str(title)), '''</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,11 +19,11 @@
 
 		<tbody>
 		  <tr>	
-		  	<a href="javascript:void(0)" onClick="location.href='add/add.pyhtml'">添加</a>
+		  	<a href="javascript:void(0)" onClick="location.href=\'admin/add.html\'">添加</a>
 		  </tr>
 
 		  <tr>
-			<th><a>${title}</a></th>           <!--循环取出数据库post表中Title-->
+			<th><a>''', _escape(_to_str(title)), '''</a></th>           <!--循环取出数据库post表中Title-->
 		  </tr>
 		 
 		</tbody>
@@ -32,4 +34,4 @@
 	</div>
 
 	
-    </body>
+    </body>\n''', ));

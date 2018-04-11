@@ -1,3 +1,12 @@
+# -*- coding: UTF-8 -*-
+import os
+
+f = open('/Users/jay/Documents/webframework/admin/add.html','r')
+txt = f.read()
+print txt
+
+
+
 
 '''
 测试用，无卵用！

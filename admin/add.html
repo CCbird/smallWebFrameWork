@@ -1,0 +1,56 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script type="text/javascript" src="../../../static/js/getTimeStamp.js"></script>
+       
+
+    </head>
+<body>
+			<script type="text/javascript">
+				function Submit(){
+					alert("提交成功！！");
+					var form = document.getElementById('blogpost_form');
+					form.submit();
+					window.location.href="../admin";
+					}
+			</script>
+
+			<form  method="post" id="blogpost_form">
+				<div align="center">
+						<div>
+							<label>标题：</lable>
+							<input  maxlength="150" id="Title" name="Title" type="text"></input>
+						</div>
+						
+						<HR style="FILTER: alpha(opacity=0,finishopacity=0,style=3)" width="70%" color=#987cb9 SIZE=3</HR>
+						
+						<label>内容：</label>
+						<div>
+							<textarea id="Body_text" name="Body_text" cols="120" rows="30"></textarea>
+						</div>
+
+						<div>
+							<label>时间戳:</label>
+							<input id="Timestamp" name="Timestamp" size="20" type="text"> </input>
+							<a href="javascript:void(0)" onclick="getNowFormatDate()">当前时间戳</a>
+								
+						</div>
+
+				</div>
+
+			</form>
+
+			<div align="center">
+					<input id="submit" type="button" value="提交" onclick="Submit()"></input>
+					<input id="delete" type="button" value="删除"></input>
+			</div>
+
+
+
+
+</body>
