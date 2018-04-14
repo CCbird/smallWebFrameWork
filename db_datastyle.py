@@ -15,6 +15,11 @@ def datetimeField():
 	return s
 
 
-def numericalField():
-	pass
+def numericalField(Type,Size):
+	if Type =='int':
+		s     = 'int('+str(Size)+') unsigned NOT NULL'
+		return s
+
+
+	
 

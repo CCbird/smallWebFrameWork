@@ -6,6 +6,7 @@ from url import urls
 import admin
 import os,sys
 from cgi import parse_qs
+import json
 
 
 
@@ -27,10 +28,15 @@ class application:
 			title = d.get('Title')
 			if title!=None:
 				print "request_body_size:"+str(request_body_size)
-				title = d.get('Title')
-				body  = d.get('Body_text')
+				title     = d.get('Title')
+				body      = d.get('contentText')
 				timestamp = d.get('Timestamp')
+				title 	  = json.dumps(title, encoding="UTF-8", ensure_ascii=False)
+				body  	  = json.dumps(body, encoding="UTF-8", ensure_ascii=False)
+				timestamp = json.dumps(timestamp, encoding="UTF-8", ensure_ascii=False)
+
 				print title,body,timestamp
+				 
 		except(ValueError):
 			request_body_size = 0
 

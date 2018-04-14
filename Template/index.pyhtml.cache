@@ -1,9 +1,11 @@
-<!doctype html>
+timestamp: 1523623892.66
+
+_extend=_buf.extend;_to_str=to_str;_escape=escape; _extend(('''<!doctype html>
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>${title}</title>
+        <title>''', _escape(_to_str(title)), '''</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -62,4 +64,4 @@
 	</body>
 </html>
 
-
+\n''', ));

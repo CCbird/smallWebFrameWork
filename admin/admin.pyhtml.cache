@@ -1,37 +1,106 @@
-timestamp: 1523458499.51
+timestamp: 1523684026.37
 
 _extend=_buf.extend;_to_str=to_str;_escape=escape; _extend(('''<!doctype html>
 <html class="no-js" lang="">
-    <head>
+<head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>''', _escape(_to_str(title)), '''</title>
+        <title>后台管理</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    </head>
-    <body>
 
-	<div class="appblog module">
+	    <style type="text/css"> 
+	    
+	      @import "../static/css/admin.css";
+
+	      a{text-decoration:none;}
+
+		 	.css1{
+			margin-bottom:20px;
+			width: 20em;/*不允许出现半汉字截断*/
+			}
+			.css2 {
+			overflow: hidden; /*自动隐藏文字*/
+			text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+			white-space: nowrap;/*强制不换行*/
+			width: 20em;/*不允许出现半汉字截断*/
+			white-space: nowrap; /* 自适应宽度*/
+			width  :400px;
+			color:#6699ff;border:0px #ff8000 dashed;
+			}
+ 
+
+  
+	    </style>
+
+</head>
+<body>
+
+	
 		
-		<table>
-		<caption><a>BLOG</a></caption>
+		<div class="main">
 
-		<tbody>
-		  <tr>	
-		  	<a href="javascript:void(0)" onClick="location.href=\'admin/add.html\'">添加</a>
-		  </tr>
+			<div class="header">
+				<div class="logo"></div>		
+			</div>
 
-		  <tr>
-			<th><a>''', _escape(_to_str(title)), '''</a></th>           <!--循环取出数据库post表中Title-->
-		  </tr>
-		 
-		</tbody>
+			<div class="side" >
+				<div class="circles"></div>
+				<div class="exitMenu">
+			      <input type="checkbox" id="exitMenuCheckbox"/> 
+			      <label for="exitMenuCheckbox"></label>
+			      <div class="finishButton" >
+			      	<a href="javascript:void(0)" onClick="location.href=\'admin/add.html\'" id="add">添加</a>
+			      	<a href="javascript:void(0)" onClick="" id="delete">删除</a>
+			      </div>
+				</div>
+			</div>
 
-		</table>
-		
+
+
+		<div class="content">
+			<table width="100%">
+				<div class="APP">
+					<a  href="javascript:void(0)" id="T">BLOG</a>
+				</div>
+
+				<thead>
+					<div>
+						<tr >
+							<td><input  type="checkbox"></td>\n''', ));
+for key in sorted(Q,reverse=True):
+    _extend(('''
+								<th><p style="color: black">''', _escape(_to_str(key)), '''</p></th>\n''', ));
+#endfor
+_extend(('''						</tr>
+					</div>
+				</thead>
 			
-	</div>
+				<tbody  align="center">\n''', ));
+ks = []
+for k in sorted(Q.keys(),reverse=True):
+    ks.append(k)
+#endfor
+for i in range(len(ks)):
+    _extend(('''				
+					<tr>
+						<td ><input  type="checkbox"></td>			\n''', ));
+    for j in range(len(ks)):
+        value = Q[ks[j]][i] 
+        _extend(('''								<th> <div class="css2"><a href ="#" style="color: #447e9b">''', _escape(_to_str(value)), '''</a></div></th>\n''', ));
+    #endfor
+    _extend(('''					<tr>
+\n''', ));
+#endfor
+_extend(('''				</tbody>
+			</table>
+		</div>
+
+	
+		
+		
+		
 
 	
     </body>\n''', ));
