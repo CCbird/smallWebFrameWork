@@ -5,6 +5,7 @@
 	pyTenjin: pip install Tenjin
 
 使用：
+
 	启动服务器：python server.py runserver  
 
-	同步数据库：python server.py migrate    
+	创建数据库自动配置表：python server.py createdb   
