@@ -7,8 +7,10 @@ from tenjin.html import *
 
 
 
+
 def render(html,context):
 	engine = tenjin.Engine()
 	renderF = engine.render(html, context)
-	print renderF
+	#admin.context['Q'].clear()
+	#print renderF
 	return renderF

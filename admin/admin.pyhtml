@@ -16,7 +16,14 @@
 
 		 	.css1{
 			margin-bottom:20px;
+			overflow: hidden; /*自动隐藏文字*/
+			text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+			white-space: nowrap;/*强制不换行*/
 			width: 20em;/*不允许出现半汉字截断*/
+			white-space: nowrap; /* 自适应宽度*/
+			width  :200px;
+			color:#6699ff;border:0px #ff8000 dashed;
+			display:none;
 			}
 			.css2 {
 			overflow: hidden; /*自动隐藏文字*/
@@ -24,8 +31,8 @@
 			white-space: nowrap;/*强制不换行*/
 			width: 20em;/*不允许出现半汉字截断*/
 			white-space: nowrap; /* 自适应宽度*/
-			width  :400px;
-			color:#6699ff;border:0px #ff8000 dashed;
+			width  :300px;
+			color:#6699ff;border:1px;
 			}
  
 
@@ -36,68 +43,74 @@
 <body>
 
 	
-		
-		<div class="main">
 
-			<div class="header">
-				<div class="logo"></div>		
-			</div>
+<div class="main">
 
-			<div class="side" >
-				<div class="circles"></div>
-				<div class="exitMenu">
-			      <input type="checkbox" id="exitMenuCheckbox"/> 
-			      <label for="exitMenuCheckbox"></label>
-			      <div class="finishButton" >
-			      	<a href="javascript:void(0)" onClick="location.href='admin/add.html'" id="add">添加</a>
-			      	<a href="javascript:void(0)" onClick="" id="delete">删除</a>
-			      </div>
-				</div>
-			</div>
+	<div class="header">
+		<div class="logo"></div>		
+	</div>
+
+	<div class="side" >
+		<div class="circles"></div>
+		<div class="exitMenu">
+	      <input type="checkbox" id="exitMenuCheckbox"/> 
+	      <label for="exitMenuCheckbox"></label>
+	      <div class="finishButton" >
+	      	<a href="javascript:void(0)" onClick="location.href='admin/add.html'" id="add">添加</a>
+	      	<a href="javascript:void(0)" onClick="" id="delete">删除</a>
+	      </div>
+		</div>
+	</div>
 
 
 
-		<div class="content">
-			<table width="100%">
-				<div class="APP">
-					<a  href="javascript:void(0)" id="T">BLOG</a>
-				</div>
-
-				<thead>
-					<div>
-						<tr>
-							<td><input  type="checkbox"></td>
-							<?py for key in sorted(Q,reverse=True): ?>
-								<th><p style="color: black">${key}</p></th>
-							<?py #endfor ?>
-						</tr>
-					</div>
-				</thead>
-			
-				<tbody  align="center">
-				<?py ks = [] ?>
-				<?py for k in sorted(Q.keys(),reverse=True): ?>
-				<?py ks.append(k) ?>
-				<?py #endfor ?>
-				<?py for i in range(len(ks)): ?>	
-				
-					<tr>
-						<td ><input  type="checkbox"></td>			
-							<?py for j in range(len(ks)): ?>
-							<?py	value = Q[ks[j]][i]  ?>
-								<th> <div class="css2"><a href ="#" style="color: #447e9b">${value}</a></div></th>
-							<?py #endfor ?>					
-					<tr>
-
-  				<?py #endfor ?>
-				</tbody>
-			</table>
+<div class="content">
+	<table width="100%">
+		<div class="APP">
+			<a  href="javascript:void(0)" id="T">BLOG</a>
 		</div>
 
+		<thead align="center">
+			<div>
+				<tr>
+					<td><input  type="checkbox"></td>
+					<?py for key in Q: ?>
+						<th><div class='css2'><p style="color: black">${key}</p></div></th>
+					<?py #endfor ?>
+				</tr>
+			</div>
+		</thead>
 	
+		<tbody  align="center">
+		<?py import types ?>
+		<?py ks = [] ?>
+		<?py for k in Q.keys(): ?>
+		<?py ks.append(k) ?>
+		<?py #endfor ?>
+		<?py length = len(Q['ID']) ?>
+		<?py for i in range(length): ?>	
 		
-		
-		
+		<tr>
+			<td ><input  type="checkbox"></td>			
+				<?py for j in range(len(ks)): ?>
+				<?py 	value = Q[ks[j]][i]  ?>
+				<?py 	if type(Q[ks[j]][i]) is types.LongType: ?> 
+							<th id=${value}><div class="css2"><a href ="#" style="color:#447e9b">${i}</a></div></th>
+				<?py 	else: ?>
+							<th> <div class="css2"><a href ="#" style="color: #447e9b">${value}</a></div></th>
+				<?py 	#endif  ?>
+				<?py #endfor ?>					
+		<tr>
 
-	
-    </body>
+			<?py #endfor ?>
+		</tbody>
+	</table>
+</div>
+
+
+
+
+
+
+
+</body>

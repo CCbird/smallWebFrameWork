@@ -3,8 +3,7 @@
 from render import *
 
 
-def index():
-	context = {'title': '窝窝 \'s Blog'}
+def index(context):
 	
 	return render('Template/index.pyhtml',context)
 

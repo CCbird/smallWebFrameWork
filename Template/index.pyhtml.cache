@@ -1,11 +1,11 @@
-timestamp: 1523623892.66
+timestamp: 1523787025.45
 
 _extend=_buf.extend;_to_str=to_str;_escape=escape; _extend(('''<!doctype html>
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>''', _escape(_to_str(title)), '''</title>
+        <title>OO\'s Blog</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,7 +20,7 @@ _extend=_buf.extend;_to_str=to_str;_escape=escape; _extend(('''<!doctype html>
 
 
         <div>
-          <p  style="right:100px;position:Absolute;top:10px "><font size="7">窝窝oo的Blog</font> </p>
+          <p  style="right:100px;position:Absolute;top:10px "><font size="7">OO\'s Blog</font> </p>
  
 	  <HR style="left:80px; position:absolute;top:90px; FILTER: alpha(opacity=100,finishopacity=0,style=1)" width="80%" color=gray SIZE=3> 
 
@@ -35,9 +35,11 @@ _extend=_buf.extend;_to_str=to_str;_escape=escape; _extend(('''<!doctype html>
 	</div>
 
 	<div style="left:80px; position:absolute; top:180px;">
-		<img src="../static/img/1.jpeg" 
-	width=800 height=600>
-	</div>
+		<!-- <img src="../static/img/1.jpeg" width=800 height=600> -->\n''', ));
+for body in Q['Body']:
+    _extend(('''            <p>''', _escape(_to_str(body)), '''</p>\n''', ));
+#endfor
+_extend(('''	</div>
 
         <div style="right: 80px; position: absolute; top: 250px;">
            <h3>最近更新</h3>

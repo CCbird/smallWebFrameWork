@@ -3,10 +3,10 @@ import re
 import views
 import render
 from url import urls
-import admin
+import migrate
 import os,sys
 from cgi import parse_qs
-import json
+import admin
 
 
 
@@ -48,7 +48,7 @@ class application:
 			if m:
 
 				if pattern[1] =='admin':
-					function = getattr(admin,pattern[1])
+					function = getattr(migrate,'migrate')	
 					return self.admin(function)
 
 				if pattern[1] =='ADD' or pattern[1]=='CHANGE':	
@@ -63,7 +63,7 @@ class application:
 					resources  = p.group()	
 					return self.static(resources_path=resources,style=pattern[1])
 
-				function = getattr(views,pattern[1])
+				function = getattr(migrate,'migrate')
 				return self.view(function)				
 		return self.Get_404()	
 
@@ -71,13 +71,15 @@ class application:
 		status = '200 OK'
 		response_headers = [('Content-type','text/html')]
 		self.start(status,response_headers)
-		yield func()
+		f = getattr(views,'index')
+		yield func(f)
 
 	def admin(self,func):									#后台界面
 		status = '200 OK'
 		response_headers = [('Content-type','text/html')]
 		self.start(status,response_headers)
-		yield func()
+		f = getattr(admin,'admin')
+		yield func(f)
 
 	def admin_ACTION(self,admin,action):									#后台界面
 		status = '200 OK'

@@ -1,4 +1,99 @@
 # -*- coding: UTF-8 -*-
+import MySQLdb
+import datetime
+import types
+from collections import OrderedDict
+
+
+              #添加的表名
+context 	= {'Q':{}}
+context['Q']     = OrderedDict(context['Q'])
+
+list_sort    =['ID','Title','Body','Timestamp']      #表属性
+'''
+nowtime		=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+
+IDs         = [1,2,3]
+Titles  	= ['一','二','三']
+Bodys    	= ['一','二','三三三三skldshkdjshds']
+Timestamps	= [nowtime,nowtime,nowtime]
+
+for key in list_sort:
+	values = eval(key+'s')
+	for value in values:
+		context['Q'].setdefault(key,[]).append(value)
+'''
+
+def details(*args):
+	#print args[0][0]
+
+	ks = []
+	for key in list_sort:
+		ks.append(key)
+
+	for i in range(len(ks)):	
+		buf = args[0][i]
+		if type(buf) == datetime.datetime:
+			buf = args[0][i].strftime('%Y-%m-%d %H:%M:%S')
+		else:
+			buf = args[0][i]
+
+			#print type(buf)
+		context['Q'].setdefault(ks[i],[]).append(buf)
+	print len(context['Q']['ID'])
+	
+
+
+	#print context
+
+# 打开数据库连接
+try:
+	db = MySQLdb.connect("localhost", "root", "wuwangjie", "blog", charset='utf8' )
+except:
+	print "连接失败"
+# 使用cursor()方法获取操作游标 
+cursor = db.cursor()
+
+# SQL 查询语句
+sql = "SELECT * FROM post "
+arg = []
+try:
+   # 执行SQL语句
+	cursor.execute(sql)
+	# 获取所有记录列表
+	results = cursor.fetchall()
+
+	for ID in cursor:
+		for index in range(len(ID)):
+			#print  ID[index]
+			arg.append(ID[index])
+
+		#print arg
+		details(arg)
+		arg = []
+
+				
+	
+except MySQLdb.Error,e:
+	cursor.rollback()
+	db.rollback()
+	print "Mysql Error %d: %s" % (e.args[0], e.args[1])
+
+# 关闭数据库连接
+db.close()
+
+
+
+
+
+
+
+
+
+'''
+
+
 import collections
 context 	= {'Q':{}}
 #context['Q'] = collections.OrderedDict()
@@ -27,7 +122,7 @@ for i in range(len(list_sort)):
 
 
 
-'''
+
 
 def context(list_sort,):
 
