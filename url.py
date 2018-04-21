@@ -22,6 +22,7 @@ static_urls = [ ('^/static/css/add.css$' 	   ,  	 'css'  ),
 		        ('^/static/css/admin.css$' 	   ,  	 'css'  ),
 		        ('^/static/js/getTimeStamp.js$',     'js'   ),
 		        ('^/static/js/Submit.js$'      ,     'js'   ),
+		        ('^/static/js/del.js$'         ,     'js'   ),
 		        ('^/static/img/1.jpeg$'        ,     'jpeg' )   
 		       ]
 

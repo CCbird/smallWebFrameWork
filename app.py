@@ -1,13 +1,13 @@
 # -*- coding: UTF-8 -*-
 import re
 import views
-import render
 from url import urls
 import migrate
 import os,sys
 from cgi import parse_qs
 import admin
-
+import json
+from migrate import DB_OP
 
 
 class application:
@@ -20,28 +20,41 @@ class application:
 	def __iter__(self):
 		path = self.environ['PATH_INFO']
 
+
 		try:
 			request_body_size = int(self.environ.get('CONTENT_LENGTH',0))
 			request_body = self.environ['wsgi.input'].read(request_body_size)
 			d = parse_qs(request_body)
 
-			title = d.get('Title')
-			if title!=None:
+			if d.get('Timestamp')!=None:
 				print "request_body_size:"+str(request_body_size)
 				title     = d.get('Title')
 				body      = d.get('contentText')
 				timestamp = d.get('Timestamp')
-				title 	  = json.dumps(title, encoding="UTF-8", ensure_ascii=False)
-				body  	  = json.dumps(body, encoding="UTF-8", ensure_ascii=False)
-				timestamp = json.dumps(timestamp, encoding="UTF-8", ensure_ascii=False)
+				#title 	  = json.dumps(title, encoding="UTF-8", ensure_ascii=False)
+				#body  	  = json.dumps(body, encoding="UTF-8", ensure_ascii=False)
+				#timestamp = json.dumps(timestamp, encoding="UTF-8", ensure_ascii=False)
 
-				print title,body,timestamp
+				#print str(title),body,timestamp
+				DB_OP.insert(title,body,Timestamp=timestamp)
+				#try:
+				#	DB_OP.insert(title,body,timestamp)
+				#except:
+				#	print '失败'
+
+
+			if d.get('ID')!=None:
+				print "request_body_size:"+str(request_body_size)
+				ID = d.get('ID')
+
+				DB_OP.delete(ID)
+
+				
 				 
 		except(ValueError):
 			request_body_size = 0
 
 		
-	
 		for pattern in urls:
 			m = re.match(pattern[0],path)
 

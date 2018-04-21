@@ -1,4 +1,6 @@
-<!doctype html>
+timestamp: 1524306006.56
+
+_extend=_buf.extend;_to_str=to_str;_escape=escape; _extend(('''<!doctype html>
 <html class="no-js" lang="">
 <head>
         <meta charset="utf-8">
@@ -59,7 +61,7 @@
 	      <input type="checkbox" id="exitMenuCheckbox"/> 
 	      <label for="exitMenuCheckbox"></label>
 	      <div class="finishButton" >
-	      	<a href="#" onClick="location.href='admin/add.html'" id="add">添加</a>
+	      	<a href="#" onClick="location.href=\'admin/add.html\'" id="add">添加</a>
 	      	<a href="#" onClick="Delete();" id="delete">删除</a>
 	      </div>
 		</div>
@@ -76,37 +78,37 @@
 		<thead align="center">
 			<div>
 				<tr>
-					<td><input  type="checkbox"></td>
-					<?py for key in Q: ?>
-						<th><div class='css2'><p style="color: black">${key}</p></div></th>
-					<?py #endfor ?>
-				</tr>
+					<td><input  type="checkbox"></td>\n''', ));
+for key in Q:
+    _extend(('''						<th><div class=\'css2\'><p style="color: black">''', _escape(_to_str(key)), '''</p></div></th>\n''', ));
+#endfor
+_extend(('''				</tr>
 			</div>
 		</thead>
 	
-		<tbody  align="center">
-		<?py import types ?>
-		<?py ks = [] ?>
-		<?py for k in Q.keys(): ?>
-		<?py ks.append(k) ?>
-		<?py #endfor ?>
-		<?py length = len(Q['ID']) ?>
-		<?py for i in range(length): ?>	
-		
+		<tbody  align="center">\n''', ));
+import types
+ks = []
+for k in Q.keys():
+    ks.append(k)
+#endfor
+length = len(Q['ID'])
+for i in range(length):
+    _extend(('''		
 		<tr>
-			<td ><input  id=${i+1} type="checkbox" name="box" onclick="checkMe()" ></td>	
-				<?py for j in range(len(ks)): ?>
-				<?py 	value = Q[ks[j]][i]  ?>
-				<?py 	if type(Q[ks[j]][i]) is types.LongType: ?> 
-							<th id=${value} name=chk_${i+1}><div class="css2"><a href ="#" style="color:#447e9b">${i+1}</a></div></th>
-				<?py 	else: ?>
-							<th> <div class="css2"><a href ="#" style="color: #447e9b">${value}</a></div></th>
-				<?py 	#endif  ?>
-				<?py #endfor ?>					
-		<tr>
-
-		<?py #endfor ?>
-		</tbody>
+			<td ><input  id=''', _escape(_to_str(i+1)), ''' type="checkbox" name="box" onclick="checkMe()" ></td>	\n''', ));
+    for j in range(len(ks)):
+        value = Q[ks[j]][i] 
+        if type(Q[ks[j]][i]) is types.LongType:
+            _extend(('''							<th id=''', _escape(_to_str(value)), ''' name=chk_''', _escape(_to_str(i+1)), '''><div class="css2"><a href ="#" style="color:#447e9b">''', _escape(_to_str(i+1)), '''</a></div></th>\n''', ));
+        else:
+            _extend(('''							<th> <div class="css2"><a href ="#" style="color: #447e9b">''', _escape(_to_str(value)), '''</a></div></th>\n''', ));
+        #endif 
+    #endfor
+    _extend(('''		<tr>
+\n''', ));
+#endfor
+_extend(('''		</tbody>
 	</table>
 </div>
 
@@ -119,4 +121,4 @@
 				</form>
 
 
-</body>
+</body>\n''', ));

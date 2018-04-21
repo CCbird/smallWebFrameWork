@@ -7,23 +7,43 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    </head>
-    <body>
-
-        <style type="text/css">
+        <style type="text/css"> 
             a:link,a:visited{
                 text-decoration:none;  /*超链接无下划线*/
             }
+
+        .css1{
+            margin-bottom:20px;
+            overflow: hidden; /*自动隐藏文字*/
+            text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+        
+            width: 500px;
+            height: 1000px;
+            line-height:30px;
+            white-space: nowrap; /* 自适应宽度*/
+            vertical-align:middle; 
+         
+            }
+
+         span{
+              display: block;
+              width: 300px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              vertical-align:middle;
+            }   
         </style>
+
+    </head>
+    <body>
 
 
         <div>
-          <p  style="right:100px;position:Absolute;top:10px "><font size="7">OO's Blog</font> </p>
+          <p  style="right:100px;position:absolute;top:10px "><font size="7">OO's Blog</font> </p>
  
-	  <HR style="left:80px; position:absolute;top:90px; FILTER: alpha(opacity=100,finishopacity=0,style=1)" width="80%" color=gray SIZE=3> 
-
-
-	</div>
+	       <HR style="left:80px; position:absolute;top:90px; FILTER: alpha(opacity=100,finishopacity=0,style=1)" width="80%" color=gray SIZE=3> 
+	   </div>
 
 
         <div style="left: 120px; position: absolute; top: 120px;">
@@ -32,33 +52,40 @@
 
 	</div>
 
-	<div style="left:80px; position:absolute; top:180px;">
+	<div class="css1" style="left:160px; position:absolute; top:200px;">
 		<!-- <img src="../static/img/1.jpeg" width=800 height=600> -->
-        <?py for body in Q['Body']: ?>
-            <p>${body}</p>
-        <?py #endfor ?>
+        <?py dt = [] ?>
+        <?py for keys in range(len(Q)): ?> 
+        <?py    for t in Q.values(): ?>
+        <?py        dt.append(t[keys]) ?>
+        <?py    #endfor ?>
+        <?py    for l in range(len(Q)): ?>
+        <?py        if l>0 and l!=1: ?>       <!-- 不显示ID-->
+                    <span>${dt[l]}</span>
+        <?py        #endif  ?>
+        <?py        if l==1: ?>               <!-- 标题-->
+                    <h1>${dt[l]}</h1>
+        <?py        #endif  ?>
+        <?py    #endfor ?>
+        <?py dt=[] ?>
+        <?py #endfor ?>       
 	</div>
 
-        <div style="right: 80px; position: absolute; top: 250px;">
+    <div> 
+        <HR style="left:80px; position:absolute; top:900px; FILTER: alpha(opacity=100,finishopacity=0,style=1)" width="80%" color=gray SIZE=3>
+    </div>
+
+
+        <div style="right: 100px; position: absolute; top: 250px;">
            <h3>最近更新</h3>
             <ul>
 		<li> </li>
 	    </ul>            
 	   <h3>文章分类</h3>
             <ul>
-                <li>
-                    <a href="www.baidu.com" style="color:black;">1212312</a>
-                </li>
-                <li>
-                    <a href="www.baidu.com" style="color:black;">1111111</a>
-                </li>
-                <li>
-                    <a href="www.baidu.com" style="color:black;">1111111</a>
-                </li>
-                <li>
-                    <a href="www.baidu.com" style="color:black;">1111111</a>
-                </li>
-
+                <?py for title in Q['Title']: ?>
+                    <li>${title}</li>
+                <?py #endfor ?>
             </ul>
         </div>
 	</body>

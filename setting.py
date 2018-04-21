@@ -13,15 +13,15 @@ class _db(object):
 
 	
 	def create_db(self):
-		try:
-			db     = MySQLdb.connect(self.host, self.user, self.passwd)
+		try:	
+			db  = MySQLdb.connect(self.host, self.user, self.passwd)
 			cursor = db.cursor()
 			cursor.execute('show databases')
 			cursor.execute('CREATE DATABASE  '+ self.db_name +' DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci')					
 			db.commit()
 
 		except MySQLdb.Error, e:
-				db.rollback()
+				#db.rollback()
 				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
 
 		finally:
@@ -35,10 +35,10 @@ class _db(object):
 				db     = MySQLdb.connect(self.host, self.user, self.passwd)
 				cursor = db.cursor() 
 				cursor.execute('use '+self.db_name)
-				print self.db_name
+				#print self.db_name
 		
 			except MySQLdb.Error, e:
-				cursor.rollback()
+				#cursor.rollback()
 				db.rollback()
 				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
 
@@ -60,11 +60,11 @@ class _db(object):
 						sql_add="alter table "+self.table_name+" add column "+args[t][t_value]+" "+vals+" NOT NULL"  #为表增加一列
 						cursor.execute(sql_add)
 			except MySQLdb.Error, e:
-				cursor.rollback()
+				#cursor.rollback()
 				db.rollback()
 				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
 		except MySQLdb.Error,e:
-			cursor.rollback()
+			#cursor.rollback()
 			db.rollback()
 			print "Mysql Error %d: %s" % (e.args[0], e.args[1])
 
